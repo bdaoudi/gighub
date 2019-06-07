@@ -18,18 +18,23 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Genre',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=150)),
             ],
         ),
         migrations.CreateModel(
             name='Gig',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('dateTime', models.DateTimeField(default=django.utils.timezone.now)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('dateTime', models.DateTimeField(
+                    default=django.utils.timezone.now)),
                 ('venue', models.CharField(max_length=200)),
-                ('artist', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('genre', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gigs.Genre')),
+                ('artist', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('genre', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='gigs.Genre')),
             ],
         ),
     ]

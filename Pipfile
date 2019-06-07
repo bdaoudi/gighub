@@ -10,6 +10,7 @@ django = "==2.1"
 pep8 = "*"
 autopep8 = "*"
 pylint = "*"
+django-crispy-forms = "*"
 
 [requires]
 python_version = "3.6"
