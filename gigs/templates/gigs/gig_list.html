@@ -1,0 +1,26 @@
+{% extends 'gigs/base.html' %}
+{%block content %}
+<h3>Upcoming gigs</h3>
+<table class="table table_light">
+    <thead>
+        <tr>
+            <th>Venue</th>
+            <th>Genre</th>
+            <th>Artist</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in object_list %}
+            <tr>
+                <td>{{ object.venue }}</td>
+                <td>{{ object.genre }}</td>
+                <td>{{ object.artist }}</td>
+                <td><a href="{% url 'gigs:detail' object.id %}">Detail</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+
+{%endblock content%}

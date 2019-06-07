@@ -1,0 +1,8 @@
+{% extends 'gigs/base.html' %}
+{%block content %}
+    <h2>{{ object.venue }}</h2>
+    <small>{{ object.dateTime }}</small>
+    <p>{{ object.genre }}</p>
+    <a href="{% url 'gigs:update' object.id %}" class="btn btn-outline-primary">Update</a>
+
+{%endblock content%}
