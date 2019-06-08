@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         {% for object in object_list %}
-            <tr>
+            <tr class="{% cycle 'row1' 'row2' %}">
                 <td>{{ object.venue }}</td>
                 <td>{{ object.genre }}</td>
                 <td>{{ object.artist }}</td>

@@ -13,7 +13,7 @@ class Genre(models.Model):
 
 class Gig(models.Model):
     artist = models.ForeignKey(User, on_delete=models.CASCADE)
-    dateTime = models.DateTimeField(default=timezone.now)
+    dateTime = models.DateTimeField('Date posted', default=timezone.now)
     venue = models.CharField(max_length=200)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
 

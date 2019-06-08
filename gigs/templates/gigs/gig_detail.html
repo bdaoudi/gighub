@@ -1,8 +1,22 @@
 {% extends 'gigs/base.html' %}
 {%block content %}
-    <h2>{{ object.venue }}</h2>
-    <small>{{ object.dateTime }}</small>
-    <p>{{ object.genre }}</p>
-    <a href="{% url 'gigs:update' object.id %}" class="btn btn-outline-primary">Update</a>
-
+<h2>Gig detail</h2>
+    <div class="row ml-4">
+        <div class="col-md-2"><strong>Venue</strong></div>
+        <div class="col-md-4">{{ object.venue }}</div>
+        <div class="w-100"></div>
+        <div class="col-md-2"><strong>Genre</strong></div>
+        <div class="col-md-4">{{ object.genre }}</div>
+        <div class="w-100"></div>
+        <div class="col-md-2"><strong>Date</strong></div>
+        <div class="col-md-4">{{ object.dateTime }}</div>
+        <div class="w-100"></div>
+        <div class="col-md-2"><strong>Artist</strong></div>
+        <div class="col-md-4"><a href="#">{{ object.artist }}</a></div>
+    </div>
+    <div class="mt-4">
+    <a href="{% url 'gigs:list' %}" class="btn btn-outline-secondary">Cancel</a>
+    <a href="{% url 'gigs:update' object.id %}" 
+        class="btn btn-primary">Update</a>
+    </div>
 {%endblock content%}
