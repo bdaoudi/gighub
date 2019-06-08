@@ -1,0 +1,36 @@
+body{
+    font-family: Lato, "Halvetica Neue", Halvetica, Arial, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family: Lato, "Halvetica Neue", Halvetica, Arial, sans-serif;
+}
+.bg-light {
+    background-color: #ff4342 !important;
+} 
+.navbar-light .navbar-nav .nav-link {
+    color: whitesmoke;
+}
+.navbar-light .navbar-brand {
+    color: whitesmoke;
+}
+.form-control{
+    font-size:17px;
+    padding: .5rem .9rem;
+    border-radius: 9px;
+}
+.form-control:focus{
+    border-color:#2196f3;
+    box-shadow:none;
+    -webkit-box-shadow:none;
+
+}
+.btn{
+    font-size:17px;
+    padding: 7px 20px;
+    border-radius: 9px;
+}

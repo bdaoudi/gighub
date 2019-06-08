@@ -6,16 +6,20 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'gigs:create' %}">New gig</a>
-      </li>
+    <div class="navbar-nav mr-auto">
+        <a class="nav-item nav-link" href="{% url 'gigs:create' %}">New gig</a>
+    </div>
+    <div class="navbar-nav">
+      {% if user.is_authenticated %}
+          <a class="nav-item nav-link" href="#">{{ user.username }}</a>
+          <a href="#" class="nav-item nav-link">|</span>
+          <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+          <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+          <a class="nav-item nav-link" href="#">Register</a>
+      {% endif %}
       
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </div>
   </div>
 </nav>
 </header>
