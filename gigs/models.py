@@ -12,13 +12,23 @@ class Genre(models.Model):
 
 
 class Gig(models.Model):
-    artist = models.ForeignKey(User, on_delete=models.CASCADE)
+    artist = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='artist')
     dateTime = models.DateTimeField('Date posted', default=timezone.now)
     venue = models.CharField(max_length=200)
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    attendees = models.ManyToManyField(
+        User,
+        through='Attendance',
+    )
 
     def __str__(self):
         return self.venue
 
     def get_absolute_url(self):
         return reverse("gigs:detail", kwargs={"pk": self.pk})
+
+
+class Attendance(models.Model):
+    attendee = models.ForeignKey(User, on_delete=models.CASCADE)
+    gig = models.ForeignKey(Gig, on_delete=models.CASCADE)
