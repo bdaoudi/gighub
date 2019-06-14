@@ -1,4 +1,29 @@
 {
+    "python.pythonPath": "/home/kamel/.local/share/virtualenvs/GigHub-pnVNtNXr/bin/python",
+    "editor.formatOnSave": true,
+    "python.linting.pep8Enabled": true,
+    "python.linting.pylintPath": "/home/kamel/.local/share/virtualenvs/GigHub-pnVNtNXr/bin/python",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django"
+    ],
     "python.linting.pylintEnabled": true,
-    "python.linting.pep8Enabled": false,
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.lock": true,
+        "Pipfile": true,
+        ".vscode": true,
+        "**/*.pyc": true,
+        "**/__pycache__/": true
+    },
+    "workbench.editor.enablePreview": false,
+    "window.zoomLevel": 0.15
 }
