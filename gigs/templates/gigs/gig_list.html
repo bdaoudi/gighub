@@ -1,26 +1,24 @@
 {% extends 'gigs/base.html' %}
 {%block content %}
-<h3>Upcoming gigs</h3>
-<table class="table table_light">
-    <thead>
-        <tr>
-            <th>Venue</th>
-            <th>Genre</th>
-            <th>Artist</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for object in object_list %}
-            <tr class="{% cycle 'row1' 'row2' %}">
-                <td>{{ object.venue }}</td>
-                <td>{{ object.genre }}</td>
-                <td>{{ object.artist }}</td>
-                <td><a href="{% url 'gigs:detail' object.id %}">Detail</a></td>
-            </tr>
-        {% endfor %}
-    </tbody>
-    
-</table>
+<h3 class="mb-4">Upcoming gigs</h3>
+<ul class="gigs">
+    {% for object in object_list %}
+    <li>
+        <div class="date">
+            <div class="month">
+                {{ object.dateTime|date:'M'}}
+            </div>
+            <div class="day">
+                {{ object.dateTime|date:'j'}}
+            </div>
+        </div>
+        <div class="details">
+            <span class="artist">{{ object.artist }}</span>
+            <span class="genre">{{ object.genre }}</span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
 
 {%endblock content%}
