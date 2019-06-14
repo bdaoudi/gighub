@@ -10,11 +10,12 @@
             </div>
             <div class="day">
                 {{ object.dateTime|date:'j'}}
-            </div>
+            </div>   
         </div>
         <div class="details">
             <span class="artist">{{ object.artist }}</span>
             <span class="genre">{{ object.genre }}</span>
+            <button class="btn btn-outline-secondary btn-sm float-right"><i class="fas fa-thumbs-up"></i></button>
         </div>
     </li>
     {% endfor %}

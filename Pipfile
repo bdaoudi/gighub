@@ -11,6 +11,8 @@ pep8 = "*"
 autopep8 = "*"
 pylint = "*"
 django-crispy-forms = "*"
+psycopg2 = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.6"

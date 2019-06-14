@@ -41,9 +41,10 @@ h6{
     -webkit-box-shadow:none;
 
 }
-.btn{
-    font-size:17px;
-    padding: 7px 20px;
+.btn {
+    /* font-size: 17px;
+    padding: 7px 20px; */
+    -ms-border-radius: 9px;
     border-radius: 9px;
 }
 
@@ -54,11 +55,13 @@ h6{
 .gigs > li {
     position: relative;
     margin-bottom: 30px;
+    
 }
 .gigs > li .details {
     position: absolute;
     top:0;
     left:70px;
+    width:30%;
 }
 .gigs > li .date {
     background-color: red;
