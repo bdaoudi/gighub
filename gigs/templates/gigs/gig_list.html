@@ -15,11 +15,59 @@
         <div class="details">
             <span class="artist">{{ object.artist }}</span>
             <span class="genre">{{ object.genre }}</span>
-            <button class="btn btn-outline-secondary btn-sm float-right"><i class="fas fa-thumbs-up"></i></button>
+            <button data-url="{{ object.get_attend_api_url }}" 
+                    data-check="{{ object.get_attend_api_check }}" 
+                    data-attendees="{{ object.attendees.count }}" 
+                    class="btn btn-sm float-right js-toggle-attendance">
+                 <i class="fas fa-thumbs-up"> {{ object.attendees.count }}</i>
+            </button>
         </div>
     </li>
     {% endfor %}
 </ul>
 
 
+
 {%endblock content%}
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".js-toggle-attendance").each(function(index){
+                var this_ = $(this)
+                var url_ = this_.attr("data-check")
+                console.log(index + ' - ' + url_)
+                $.get(url_, function(data){
+                    if(data.is_attending){
+                        this_.addClass("btn-primary")
+                    } 
+                })
+            });
+            $(".js-toggle-attendance").click(function(e){
+                e.preventDefault()
+                var this_ = $(this)
+                var url_ = this_.attr('data-url')
+                var attendeesCount_ = parseInt(this_.attr('data-attendees'))
+                console.log(url_)
+                $.ajax({
+                    url: url_,
+                    type: 'GET',
+                    data : {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                    success: function(data)
+                    {
+                        if (data.is_attending) {
+                            attendeesCount_ += 1
+                        } else {
+                            attendeesCount_ -= 1
+                        }
+
+                        this_.toggleClass("btn-primary", data.is_attending )
+                        this_.attr('data-attendees', attendeesCount_)
+                        this_.html('<i class="fas fa-thumbs-up"> ' + attendeesCount_ + '</i>')
+                        console.log(data);
+                    }
+                })
+            })
+        });
+    </script>
+{% endblock %}
+

@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from rest_framework import authentication, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
-from .models import Gig
+from .models import Gig, Attendance
+from django.contrib.auth.models import User
 from .forms import GigModelForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -37,3 +41,45 @@ class GigUpdate(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['title'] = "Update the gig"
         return context
+
+
+class AttendAPIToggle(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None, format=None):
+        gig = get_object_or_404(Gig, id=id)
+        user = request.user
+        # if request.method == 'POST':
+        data = {}
+        is_attend = Attendance.objects.filter(attendee_id=user.id,
+                                              gig_id=gig.id).exists()
+        if is_attend:
+            # gig.attendees.clear()
+            Attendance.objects.filter(attendee_id=user.id,
+                                      gig_id=gig.id).delete()
+            is_attend = not is_attend
+        else:
+            Attendance.objects.create(attendee=user, gig=gig)
+            is_attend = not is_attend
+        data = {
+            'is_attending': is_attend,
+        }
+        return Response(data)
+
+
+class AttendAPICheck(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None, format=None):
+        gig = get_object_or_404(Gig, id=id)
+        user = request.user
+        # if request.method == 'POST':
+        data = {}
+        is_attend = Attendance.objects.filter(attendee_id=user.id,
+                                              gig_id=gig.id).exists()
+        data = {
+            'is_attending': is_attend,
+        }
+        return Response(data)
